@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+
+  pgdb:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DBNAME}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+volumes:
+    db-data:
